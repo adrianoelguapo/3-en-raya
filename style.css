@@ -41,6 +41,11 @@ body{
     border-radius: 20px;
     border: 2px solid rgb(94, 87, 233);
     cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.casilla:hover{
+    background-color: rgb(103, 103, 231);
 }
 
 .casilla img {
@@ -60,6 +65,14 @@ body{
     align-items: center;
     color: white;
     border: 2px solid rgb(94, 87, 233);
+}
+
+.nombrejugador{
+    height: 20%;
+}
+
+.turnojugador{
+    height: 15%;
 }
 
 .contenedorfoto{

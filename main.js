@@ -12,12 +12,16 @@ setTimeout(() => {
         ficha: "./images/letra-x.png"
     }
 
-     $(".jugador1 .nombrejugador").append('<p>' + jugador1.nombre + '</p>')
-     $(".jugador2 .nombrejugador").append('<p>' + jugador2.nombre + '</p>') 
+     $(".jugador1 .nombrejugador").append("<p>" + jugador1.nombre + "</p>")
+     $(".jugador2 .nombrejugador").append("<p>" + jugador2.nombre + "</p>") 
 
      let turno = 1
 
+    
+
 $(function() {
+    añadirTurnoJugador();
+
     $(".casilla").on("click", function() {
         if ($(this).children("img").length === 0 && turno === 1) {
             $(this).append('<img src="' + jugador1.ficha + '">');
@@ -28,8 +32,22 @@ $(function() {
         }
 
         comprobarGanador();
-        comprobarEmpate()
+        comprobarEmpate();
+        añadirTurnoJugador();
     });
+
+    function añadirTurnoJugador(){
+        if (turno === 1){
+            console.log("Es el turno del jugador 1");
+            $(".jugador1 .turnojugador").empty().append("<p> Tu turno </p>");
+            $(".jugador2 .turnojugador").empty();
+        } else if (turno === 2){
+            console.log("Es el turno del jugador 2");
+            $(".jugador2 .turnojugador").empty().append("<p> Tu turno </p>");
+            $(".jugador1 .turnojugador").empty();
+        }
+    }
+        
 
     function comprobarGanador() {
         const condiciones = [
