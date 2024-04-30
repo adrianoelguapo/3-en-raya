@@ -1,3 +1,4 @@
+
 setTimeout(() => {
     let nombreJugador1 = prompt("Ingresa el nombre del jugador 1")
     let nombreJugador2 = prompt("Ingresa el nombre del jugador 2")
@@ -17,24 +18,27 @@ setTimeout(() => {
 
      let turno = 1
 
-    
+     let ganador = false
 
 $(function() {
     añadirTurnoJugador();
 
-    $(".casilla").on("click", function() {
-        if ($(this).children("img").length === 0 && turno === 1) {
-            $(this).append('<img src="' + jugador1.ficha + '">');
-            turno = 2;
-        } else if ($(this).children('img').length === 0 && turno === 2) {
-            $(this).append('<img src="' + jugador2.ficha + '">');
-            turno = 1;
-        }
+        $(".casilla").on("click", function() {
 
-        comprobarGanador();
-        comprobarEmpate();
-        añadirTurnoJugador();
-    });
+            if(!ganador){
+                if ($(this).children("img").length === 0 && turno === 1) {
+                $(this).append('<img src="' + jugador1.ficha + '">');
+                turno = 2;
+                } else if ($(this).children('img').length === 0 && turno === 2) {
+                    $(this).append('<img src="' + jugador2.ficha + '">');
+                    turno = 1;
+                }
+
+                comprobarGanador();
+                comprobarEmpate();
+                añadirTurnoJugador(); 
+            }
+        });
 
     function añadirTurnoJugador(){
         if (turno === 1){
@@ -77,10 +81,15 @@ $(function() {
             }
 
             if (hayGanador) {
+                ganador = true
                 if (fichaGanador === jugador1.ficha) {
-                    alert("Ha ganado " + jugador1.nombre);
+                    setTimeout(() => {
+                        alert("Ha ganado " + jugador1.nombre);
+                    },500) 
                 } else if (fichaGanador === jugador2.ficha) {
-                    alert("Ha ganado " + jugador2.nombre);
+                    setTimeout(() => {
+                        alert("Ha ganado " + jugador2.nombre);
+                    },500) 
                 }
                 return;
             }
@@ -103,7 +112,7 @@ $(function() {
             }
         }
     
-        if (todasOcupadas) {
+        if (todasOcupadas && !ganador) {
             alert("Empate, no hay ganador");
         }
     }
