@@ -23,22 +23,21 @@ setTimeout(() => {
 $(function() {
     añadirTurnoJugador();
 
-        $(".casilla").on("click", function() {
-
-            if(!ganador){
-                if ($(this).children("img").length === 0 && turno === 1) {
-                $(this).append('<img src="' + jugador1.ficha + '">');
-                turno = 2;
-                } else if ($(this).children('img').length === 0 && turno === 2) {
-                    $(this).append('<img src="' + jugador2.ficha + '">');
-                    turno = 1;
-                }
-
-                comprobarGanador();
-                comprobarEmpate();
-                añadirTurnoJugador(); 
+    $(".casilla").on("click", function() {
+        if(!ganador){
+            if ($(this).children("img").length === 0 && turno === 1) {
+            $(this).append('<img src="' + jugador1.ficha + '">');
+            turno = 2;
+            } else if ($(this).children('img').length === 0 && turno === 2) {
+                $(this).append('<img src="' + jugador2.ficha + '">');
+                turno = 1;
             }
-        });
+
+            comprobarGanador();
+            comprobarEmpate();
+            añadirTurnoJugador(); 
+        }
+    });
 
     function añadirTurnoJugador(){
         if (turno === 1){
